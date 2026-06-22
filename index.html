@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TITANS — Recrutement Agents Terrain</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>TITANS — Test psychotechnique</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #1E3A5F;
@@ -19,7 +19,11 @@
     --gray-400: #a09b8e;
     --gray-600: #6b6560;
     --error: #c0392b;
+    --error-pale: #fbe5e2;
     --success: #1a6b3c;
+    --success-pale: #e3f0e7;
+    --warn: #b8862a;
+    --warn-pale: #faf0dc;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,7 +35,6 @@
     min-height: 100vh;
   }
 
-  /* HEADER */
   .header {
     background: var(--navy);
     padding: 0;
@@ -42,9 +45,9 @@
     content: '';
     position: absolute;
     top: -60px; right: -60px;
-    width: 280px; height: 280px;
+    width: 220px; height: 220px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
   }
   .header::after {
     content: '';
@@ -54,67 +57,59 @@
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
   .header-inner {
-    max-width: 720px;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 48px 24px 40px;
+    padding: 28px 20px 24px;
     position: relative;
     z-index: 1;
   }
   .brand {
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 28px;
+    gap: 12px;
+    margin-bottom: 6px;
   }
   .brand-icon {
-    width: 48px; height: 48px;
+    width: 38px; height: 38px;
     background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    border-radius: 10px;
+    border-radius: 9px;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 26px; font-weight: 700;
+    font-size: 20px; font-weight: 700;
     color: var(--navy);
-    box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+    flex-shrink: 0;
   }
   .brand-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 700;
+    font-size: 17px; font-weight: 700;
     color: var(--white);
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
   }
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(26px, 5vw, 36px);
+    font-size: clamp(20px, 5vw, 26px);
     font-weight: 600;
     color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 14px;
+    line-height: 1.25;
   }
-  .header h1 span { color: var(--gold); }
   .header-sub {
-    font-size: 14px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.6;
-    max-width: 520px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
   }
 
-  /* PROGRESS */
   .progress-wrap {
     background: var(--navy-dark);
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0 20px;
   }
   .progress-inner {
-    max-width: 720px;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 14px 0;
+    padding: 10px 0;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
   }
   .progress-bar-bg {
     flex: 1;
@@ -127,904 +122,585 @@
     height: 100%;
     background: linear-gradient(90deg, var(--gold), var(--gold-light));
     border-radius: 2px;
-    transition: width 0.4s ease;
-    width: 12.5%;
+    transition: width 0.35s ease;
   }
   .progress-label {
-    font-size: 12px;
-    color: var(--gold);
-    font-weight: 500;
-    white-space: nowrap;
-    min-width: 60px;
-    text-align: right;
-  }
-
-  /* MAIN */
-  .main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 32px 24px 80px;
-  }
-
-  /* SECTION */
-  .section { display: none; }
-  .section.active { display: block; animation: fadeIn 0.35s ease; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .section-header {
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .section-badge {
-    display: inline-block;
-    background: var(--gold-pale);
-    color: var(--gold);
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    border: 1px solid rgba(201,168,76,0.25);
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 6px;
-  }
-  .section-desc {
-    font-size: 14px;
-    color: var(--gray-600);
-    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+    font-weight: 500;
   }
 
-  /* FIELD GROUP */
-  .field-group { margin-bottom: 22px; }
+  .main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px 20px;
+    box-shadow: 0 2px 14px rgba(30,58,95,0.08);
+    border: 1px solid var(--gray-200);
+  }
+
+  .field-group { margin-bottom: 18px; }
   .field-label {
     display: block;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--navy);
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-  .field-label .req { color: var(--gold); margin-left: 3px; }
-  .field-hint {
-    font-size: 12px;
-    color: var(--gray-400);
-    margin-bottom: 8px;
-    font-style: italic;
-  }
-
-  /* INPUTS */
-  input[type="text"],
-  input[type="tel"],
-  textarea,
-  select {
-    width: 100%;
-    background: var(--white);
-    border: 1.5px solid var(--gray-200);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
+    font-size: 13px;
+    font-weight: 700;
     color: var(--navy-dark);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 8px;
+  }
+  input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 9px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy-dark);
+    background: var(--gray-100);
+  }
+  input[type="text"]:focus, input[type="date"]:focus {
     outline: none;
-    appearance: none;
-  }
-  input[type="text"]:focus,
-  input[type="tel"]:focus,
-  textarea:focus,
-  select:focus {
     border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
-  }
-  input.invalid, textarea.invalid, select.invalid {
-    border-color: var(--error);
-  }
-  textarea {
-    min-height: 110px;
-    resize: vertical;
-    line-height: 1.6;
+    background: var(--white);
   }
 
-  /* RADIO / CHECKBOX CUSTOM */
-  .options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
+  .choice-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
-  .options-grid.full { grid-template-columns: 1fr; }
-  .option-item {
-    position: relative;
-  }
-  .option-item input[type="radio"],
-  .option-item input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    width: 0; height: 0;
-  }
-  .option-label {
+  .choice-item {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 12px 14px;
-    background: var(--white);
+    padding: 13px 14px;
     border: 1.5px solid var(--gray-200);
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 14px;
-    color: var(--navy-dark);
-    transition: all 0.2s;
-    line-height: 1.4;
+    transition: border-color 0.15s, background 0.15s;
+    -webkit-tap-highlight-color: transparent;
   }
-  .option-label:hover {
+  .choice-item:hover { border-color: var(--gold-light); }
+  .choice-item.selected {
     border-color: var(--gold);
     background: var(--gold-pale);
   }
-  .option-item input:checked + .option-label {
-    border-color: var(--gold);
-    background: var(--gold-pale);
-    color: var(--navy);
-    font-weight: 500;
-  }
-  .option-dot {
+  .choice-dot {
     width: 18px; height: 18px;
-    min-width: 18px;
     border-radius: 50%;
-    border: 2px solid var(--gray-200);
-    background: var(--white);
-    transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--gray-400);
+    flex-shrink: 0;
+    position: relative;
   }
-  .option-item input:checked + .option-label .option-dot {
-    border-color: var(--gold);
-    background: var(--gold);
-  }
-  .option-dot::after {
+  .choice-item.selected .choice-dot { border-color: var(--gold); }
+  .choice-item.selected .choice-dot::after {
     content: '';
-    width: 7px; height: 7px;
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 8px; height: 8px;
     border-radius: 50%;
-    background: var(--white);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .option-item input:checked + .option-label .option-dot::after {
-    opacity: 1;
-  }
-  .check-dot {
-    width: 18px; height: 18px;
-    min-width: 18px;
-    border-radius: 4px;
-    border: 2px solid var(--gray-200);
-    background: var(--white);
-    transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .option-item input:checked + .option-label .check-dot {
-    border-color: var(--gold);
     background: var(--gold);
   }
-  .check-dot::after {
+  .choice-box {
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    border: 2px solid var(--gray-400);
+    flex-shrink: 0;
+    position: relative;
+  }
+  .choice-item.selected .choice-box { border-color: var(--gold); background: var(--gold); }
+  .choice-item.selected .choice-box::after {
     content: '✓';
-    font-size: 11px;
-    color: var(--white);
-    font-weight: 700;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .option-item input:checked + .option-label .check-dot::after {
-    opacity: 1;
-  }
-
-  /* CONDITIONAL */
-  .conditional { display: none; }
-  .conditional.visible { display: block; animation: fadeIn 0.25s ease; }
-
-  /* ERROR MSG */
-  .error-msg {
-    font-size: 12px;
-    color: var(--error);
-    margin-top: 6px;
-    display: none;
-  }
-  .error-msg.visible { display: block; }
-
-  /* ALERT BOX */
-  .alert-box {
-    background: #fef9ec;
-    border: 1px solid rgba(201,168,76,0.4);
-    border-left: 4px solid var(--gold);
-    border-radius: 8px;
-    padding: 14px 16px;
+    position: absolute;
+    top: -3px; left: 2px;
     font-size: 13px;
+    font-weight: 700;
     color: var(--navy-dark);
-    line-height: 1.6;
-    margin-bottom: 24px;
   }
-  .alert-box strong { color: var(--navy); }
-
-  /* DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--gray-200);
-    margin: 28px 0;
+  .choice-text { font-size: 14px; color: var(--navy-dark); line-height: 1.4; }
+  .choice-letter {
+    font-weight: 700;
+    color: var(--navy-light);
+    margin-right: 2px;
   }
 
-  /* BUTTONS */
-  .btn-row {
-    display: flex;
-    gap: 12px;
-    justify-content: flex-end;
-    margin-top: 32px;
-  }
   .btn {
-    padding: 13px 28px;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 10px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
     border: none;
-    transition: all 0.2s;
-    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
   }
-  .btn-back {
-    background: transparent;
+  .btn:active { transform: scale(0.985); }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .btn-primary:disabled {
+    background: var(--gray-200);
     color: var(--gray-400);
+    cursor: not-allowed;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--navy-light);
     border: 1.5px solid var(--gray-200);
   }
-  .btn-back:hover { border-color: var(--navy); color: var(--navy); }
-  .btn-next {
-    background: linear-gradient(135deg, var(--navy), var(--navy-light));
-    color: var(--white);
-    box-shadow: 0 4px 14px rgba(30,58,95,0.25);
-  }
-  .btn-next:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(30,58,95,0.35);
-  }
-  .btn-submit {
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: var(--navy-dark);
-    box-shadow: 0 4px 14px rgba(201,168,76,0.35);
-  }
-  .btn-submit:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(201,168,76,0.45);
-  }
-  .btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none !important;
-  }
+  .btn-row { display: flex; gap: 10px; margin-top: 18px; }
+  .btn-row .btn-ghost { flex: 0 0 auto; width: auto; padding: 14px 18px; }
+  .btn-row .btn-primary { flex: 1; }
 
-  /* SUCCESS */
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 60px 24px;
-    animation: fadeIn 0.5s ease;
-  }
-  .success-screen.active { display: block; }
-  .success-icon {
-    width: 80px; height: 80px;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    border-radius: 50%;
-    margin: 0 auto 28px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 36px;
-    box-shadow: 0 8px 28px rgba(201,168,76,0.35);
-  }
-  .success-screen h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
-    color: var(--navy);
+  .section-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--navy-light);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    padding: 4px 10px;
     margin-bottom: 14px;
   }
-  .success-screen p {
-    font-size: 15px;
+
+  .q-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy-dark);
+    line-height: 1.45;
+    margin-bottom: 18px;
+  }
+
+  .intro-text {
+    font-size: 13px;
     color: var(--gray-600);
-    line-height: 1.7;
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  /* ERROR SCREEN */
-  .error-screen {
-    display: none;
-    background: #fff5f5;
-    border: 1px solid #fcc;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-    font-size: 14px;
-    color: var(--error);
     line-height: 1.6;
+    margin-bottom: 18px;
   }
-  .error-screen.active { display: block; }
 
-  /* CHAR COUNTER */
-  .char-count {
+  /* RESULT SCREEN */
+  .verdict-banner {
+    border-radius: 12px;
+    padding: 20px 18px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .verdict-banner.admis { background: var(--success-pale); border: 1.5px solid var(--success); }
+  .verdict-banner.zone-grise { background: var(--warn-pale); border: 1.5px solid var(--warn); }
+  .verdict-banner.recale { background: var(--error-pale); border: 1.5px solid var(--error); }
+  .verdict-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .verdict-banner.admis .verdict-title { color: var(--success); }
+  .verdict-banner.zone-grise .verdict-title { color: var(--warn); }
+  .verdict-banner.recale .verdict-title { color: var(--error); }
+  .verdict-sub { font-size: 13px; color: var(--navy-dark); opacity: 0.8; }
+  .score-total {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 6px 0 2px;
+  }
+
+  .score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 13.5px;
+  }
+  .score-row.muted { opacity: 0.65; }
+  .score-row.total-row { border-bottom: none; padding-top: 14px; }
+  .score-row.total-row .score-row-label, .score-row.total-row .score-row-val { font-weight: 700; }
+  .score-row-label { color: var(--navy-dark); font-weight: 500; }
+  .score-row-val { font-weight: 700; color: var(--navy); }
+
+  .obs-textarea, .recap-textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--navy-dark);
+    background: var(--gray-100);
+    resize: vertical;
+  }
+  .recap-textarea {
+    min-height: 200px;
+    font-size: 12px;
+    line-height: 1.5;
+    background: var(--gray-100);
+  }
+  .obs-textarea:focus { outline: none; border-color: var(--gold); background: var(--white); }
+
+  .copy-confirm {
+    font-size: 12px;
+    color: var(--success);
+    font-weight: 600;
+    margin-top: 8px;
+    text-align: center;
+    height: 16px;
+  }
+
+  .hidden { display: none !important; }
+
+  .footer-note {
+    text-align: center;
     font-size: 11px;
     color: var(--gray-400);
-    text-align: right;
-    margin-top: 4px;
-  }
-
-  @media (max-width: 480px) {
-    .options-grid { grid-template-columns: 1fr; }
-    .btn-row { flex-direction: column-reverse; }
-    .btn { width: 100%; text-align: center; }
-    .header-inner { padding: 32px 20px 28px; }
+    margin-top: 18px;
+    font-style: italic;
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-inner">
     <div class="brand">
       <div class="brand-icon">T</div>
       <div class="brand-name">Titans</div>
     </div>
-    <h1>Rejoignez l'équipe<br><span>Agents Terrain</span></h1>
-    <p class="header-sub">Ce formulaire remplace le CV. Répondez soigneusement à chaque question — votre dossier sera traité dans les 48 heures suivant votre soumission.</p>
+    <h1 id="header-title">Test psychotechnique</h1>
+    <div class="header-sub" id="header-sub">Test de recrutement Titans</div>
   </div>
 </div>
 
-<!-- PROGRESS -->
-<div class="progress-wrap">
+<div class="progress-wrap hidden" id="progress-wrap">
   <div class="progress-inner">
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="progressBar"></div>
-    </div>
-    <div class="progress-label" id="progressLabel">Étape 1 / 8</div>
+    <div class="progress-label" id="progress-label">Question 1/20</div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
   </div>
 </div>
 
-<!-- FORM -->
 <div class="main">
-  <form id="recruitForm" novalidate>
 
-    <!-- SECTION 1 — POSTE VISÉ -->
-    <div class="section active" id="s1">
-      <div class="section-header">
-        <div class="section-badge">Étape 1</div>
-        <div class="section-title">Poste visé</div>
-        <div class="section-desc">Indiquez le poste pour lequel vous souhaitez candidater.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Vous postulez pour quel poste ?<span class="req">*</span></label>
-        <div class="options-grid full">
-          <div class="option-item">
-            <input type="radio" name="poste" id="p1" value="Agent de Prospection" required>
-            <label class="option-label" for="p1"><span class="option-dot"></span>Agent de Prospection — Aller à la rencontre des gérants, présenter l'application, convaincre</label>
-          </div>
-          <div class="option-item">
-            <input type="radio" name="poste" id="p2" value="Agent d'Intégration">
-            <label class="option-label" for="p2"><span class="option-dot"></span>Agent d'Intégration — Installer l'application, former l'équipe sur place, assurer l'adoption</label>
-          </div>
-          <div class="option-item">
-            <input type="radio" name="poste" id="p3" value="Les deux postes">
-            <label class="option-label" for="p3"><span class="option-dot"></span>Les deux postes — Je suis disponible pour les deux missions</label>
-          </div>
+  <!-- ÉCRAN 1 — IDENTIFICATION -->
+  <div class="card" id="screen-intro">
+    <p class="intro-text">Merci de répondre à toutes les questions avec sincérité. Le test dure environ 15 à 20 minutes et doit être complété dans les 24h suivant la réception de ce lien.</p>
+    <div class="field-group">
+      <label class="field-label">Nom complet du candidat</label>
+      <input type="text" id="cand-nom" placeholder="Prénom et nom">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Poste visé</label>
+      <div class="choice-grid">
+        <div class="choice-item" data-poste="prospection" onclick="selectPoste(this,'prospection')">
+          <div class="choice-dot"></div>
+          <div class="choice-text">Agent Prospection</div>
         </div>
-        <div class="error-msg" id="err_poste">Veuillez sélectionner un poste.</div>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn btn-next" onclick="nextSection(1)">Continuer →</button>
+        <div class="choice-item" data-poste="integration" onclick="selectPoste(this,'integration')">
+          <div class="choice-dot"></div>
+          <div class="choice-text">Agent Intégration</div>
+        </div>
+        <div class="choice-item" data-poste="both" onclick="selectPoste(this,'both')">
+          <div class="choice-dot"></div>
+          <div class="choice-text">Les deux postes</div>
+        </div>
       </div>
     </div>
-
-    <!-- SECTION 2 — INFORMATIONS PERSONNELLES -->
-    <div class="section" id="s2">
-      <div class="section-header">
-        <div class="section-badge">Étape 2</div>
-        <div class="section-title">Informations personnelles</div>
-        <div class="section-desc">Vos coordonnées pour vous contacter rapidement.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="nom">Nom et prénom(s)<span class="req">*</span></label>
-        <input type="text" id="nom" name="nom" placeholder="Ex : Kouassi Jean-Marc" required>
-        <div class="error-msg" id="err_nom">Ce champ est obligatoire.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="whatsapp">Numéro WhatsApp<span class="req">*</span></label>
-        <div class="field-hint">Nous vous contacterons uniquement via WhatsApp</div>
-        <input type="tel" id="whatsapp" name="whatsapp" placeholder="Ex : 07 XX XX XX XX" required>
-        <div class="error-msg" id="err_whatsapp">Ce champ est obligatoire.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Commune de résidence à Abidjan<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="commune" id="c1" value="Yopougon" required><label class="option-label" for="c1"><span class="option-dot"></span>Yopougon</label></div>
-          <div class="option-item"><input type="radio" name="commune" id="c2" value="Koumassi"><label class="option-label" for="c2"><span class="option-dot"></span>Koumassi</label></div>
-          <div class="option-item"><input type="radio" name="commune" id="c3" value="Abobo"><label class="option-label" for="c3"><span class="option-dot"></span>Abobo</label></div>
-          <div class="option-item"><input type="radio" name="commune" id="c4" value="Adjamé"><label class="option-label" for="c4"><span class="option-dot"></span>Adjamé</label></div>
-          <div class="option-item"><input type="radio" name="commune" id="c5" value="Cocody"><label class="option-label" for="c5"><span class="option-dot"></span>Cocody</label></div>
-          <div class="option-item"><input type="radio" name="commune" id="c6" value="Marcory"><label class="option-label" for="c6"><span class="option-dot"></span>Marcory</label></div>
-          <div class="option-item"><input type="radio" name="commune" id="c7" value="Treichville"><label class="option-label" for="c7"><span class="option-dot"></span>Treichville</label></div>
-          <div class="option-item"><input type="radio" name="commune" id="c8" value="Plateau"><label class="option-label" for="c8"><span class="option-dot"></span>Plateau</label></div>
-          <div class="option-item"><input type="radio" name="commune" id="c9" value="Autre commune"><label class="option-label" for="c9"><span class="option-dot"></span>Autre commune</label></div>
-        </div>
-        <div class="error-msg" id="err_commune">Veuillez sélectionner votre commune.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Vous êtes disponible immédiatement ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="dispo" id="d1" value="Oui, immédiatement" required><label class="option-label" for="d1"><span class="option-dot"></span>Oui, immédiatement</label></div>
-          <div class="option-item"><input type="radio" name="dispo" id="d2" value="Non, date à préciser"><label class="option-label" for="d2"><span class="option-dot"></span>Non, à partir d'une date précise</label></div>
-        </div>
-        <div class="error-msg" id="err_dispo">Veuillez indiquer votre disponibilité.</div>
-        <div class="conditional" id="cond_dispo">
-          <div style="margin-top:10px">
-            <input type="text" name="dispo_date" placeholder="Indiquez à partir de quand vous serez disponible">
-          </div>
-        </div>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(2)">← Retour</button>
-        <button type="button" class="btn btn-next" onclick="nextSection(2)">Continuer →</button>
-      </div>
+    <div class="field-group">
+      <label class="field-label">Date du test</label>
+      <input type="date" id="cand-date">
     </div>
-
-    <!-- SECTION 3 — NIVEAU ACADÉMIQUE -->
-    <div class="section" id="s3">
-      <div class="section-header">
-        <div class="section-badge">Étape 3</div>
-        <div class="section-title">Formation académique</div>
-        <div class="section-desc">Votre parcours scolaire et universitaire.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Quel est votre niveau d'études ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="niveau" id="n1" value="Brevet / BEPC" required><label class="option-label" for="n1"><span class="option-dot"></span>Brevet / BEPC</label></div>
-          <div class="option-item"><input type="radio" name="niveau" id="n2" value="BAC"><label class="option-label" for="n2"><span class="option-dot"></span>BAC</label></div>
-          <div class="option-item"><input type="radio" name="niveau" id="n3" value="BAC+1 / BAC+2"><label class="option-label" for="n3"><span class="option-dot"></span>BAC+1 / BAC+2</label></div>
-          <div class="option-item"><input type="radio" name="niveau" id="n4" value="BAC+3 et plus"><label class="option-label" for="n4"><span class="option-dot"></span>BAC+3 et plus</label></div>
-        </div>
-        <div class="error-msg" id="err_niveau">Veuillez sélectionner votre niveau.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="diplome">Votre dernier diplôme ou classe obtenu(e)<span class="req">*</span></label>
-        <input type="text" id="diplome" name="diplome" placeholder="Ex : BAC série D, Licence en Gestion..." required>
-        <div class="error-msg" id="err_diplome">Ce champ est obligatoire.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="domaine">Votre domaine d'études<span class="req">*</span></label>
-        <input type="text" id="domaine" name="domaine" placeholder="Ex : Commerce, Informatique, Communication..." required>
-        <div class="error-msg" id="err_domaine">Ce champ est obligatoire.</div>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(3)">← Retour</button>
-        <button type="button" class="btn btn-next" onclick="nextSection(3)">Continuer →</button>
-      </div>
-    </div>
-
-    <!-- SECTION 4 — EXPÉRIENCE -->
-    <div class="section" id="s4">
-      <div class="section-header">
-        <div class="section-badge">Étape 4</div>
-        <div class="section-title">Expérience professionnelle</div>
-        <div class="section-desc">Votre vécu professionnel, même court ou informel.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Avez-vous déjà travaillé ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="exp" id="e1" value="Oui" required><label class="option-label" for="e1"><span class="option-dot"></span>Oui</label></div>
-          <div class="option-item"><input type="radio" name="exp" id="e2" value="Non, c'est ma première expérience"><label class="option-label" for="e2"><span class="option-dot"></span>Non, c'est ma première expérience</label></div>
-        </div>
-        <div class="error-msg" id="err_exp">Veuillez répondre à cette question.</div>
-        <div class="conditional" id="cond_exp">
-          <div style="margin-top:14px">
-            <label class="field-label" for="exp_detail">Quel était votre dernier poste et dans quelle structure ?</label>
-            <textarea id="exp_detail" name="exp_detail" placeholder="Décrivez brièvement votre expérience..."></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="exp_vente">Quelle est votre expérience dans la vente, le commercial ou le contact client ?<span class="req">*</span></label>
-        <div class="field-hint">Même si c'est informel — petit commerce, aide familiale, débrouille...</div>
-        <textarea id="exp_vente" name="exp_vente" placeholder="Expliquez en quelques lignes..." required></textarea>
-        <div class="error-msg" id="err_exp_vente">Ce champ est obligatoire.</div>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(4)">← Retour</button>
-        <button type="button" class="btn btn-next" onclick="nextSection(4)">Continuer →</button>
-      </div>
-    </div>
-
-    <!-- SECTION 5 — ÉQUIPEMENT -->
-    <div class="section" id="s5">
-      <div class="section-header">
-        <div class="section-badge">Étape 5</div>
-        <div class="section-title">Équipement & autonomie</div>
-        <div class="section-desc">Des prérequis techniques indispensables pour la mission.</div>
-      </div>
-
-      <div class="alert-box">
-        <strong>Important :</strong> Les agents utilisent leur téléphone pour soumettre des rapports terrain quotidiennement. Un smartphone fonctionnel avec accès à internet est indispensable.
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Vous avez un smartphone fonctionnel ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="smartphone" id="sm1" value="Oui" required><label class="option-label" for="sm1"><span class="option-dot"></span>Oui</label></div>
-          <div class="option-item"><input type="radio" name="smartphone" id="sm2" value="Non"><label class="option-label" for="sm2"><span class="option-dot"></span>Non</label></div>
-        </div>
-        <div class="error-msg" id="err_smartphone">Veuillez répondre à cette question.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Votre téléphone est Android ou iPhone ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="os" id="os1" value="Android" required><label class="option-label" for="os1"><span class="option-dot"></span>Android</label></div>
-          <div class="option-item"><input type="radio" name="os" id="os2" value="iPhone (iOS)"><label class="option-label" for="os2"><span class="option-dot"></span>iPhone (iOS)</label></div>
-          <div class="option-item"><input type="radio" name="os" id="os3" value="Je ne sais pas"><label class="option-label" for="os3"><span class="option-dot"></span>Je ne sais pas</label></div>
-        </div>
-        <div class="error-msg" id="err_os">Veuillez répondre à cette question.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Vous avez accès à internet sur votre téléphone ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="internet" id="i1" value="Oui, régulièrement" required><label class="option-label" for="i1"><span class="option-dot"></span>Oui, régulièrement</label></div>
-          <div class="option-item"><input type="radio" name="internet" id="i2" value="Parfois"><label class="option-label" for="i2"><span class="option-dot"></span>Parfois</label></div>
-          <div class="option-item"><input type="radio" name="internet" id="i3" value="Non"><label class="option-label" for="i3"><span class="option-dot"></span>Non</label></div>
-        </div>
-        <div class="error-msg" id="err_internet">Veuillez répondre à cette question.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Vous êtes autonome pour vous déplacer dans Abidjan ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="deplacement" id="dep1" value="Oui" required><label class="option-label" for="dep1"><span class="option-dot"></span>Oui</label></div>
-          <div class="option-item"><input type="radio" name="deplacement" id="dep2" value="Non"><label class="option-label" for="dep2"><span class="option-dot"></span>Non</label></div>
-        </div>
-        <div class="error-msg" id="err_deplacement">Veuillez répondre à cette question.</div>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(5)">← Retour</button>
-        <button type="button" class="btn btn-next" onclick="nextSection(5)">Continuer →</button>
-      </div>
-    </div>
-
-    <!-- SECTION 6 — MOTIVATION -->
-    <div class="section" id="s6">
-      <div class="section-header">
-        <div class="section-badge">Étape 6</div>
-        <div class="section-title">Motivation</div>
-        <div class="section-desc">Prenez le temps de répondre soigneusement — c'est la partie la plus importante de votre candidature.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="motiv1">Pourquoi voulez-vous rejoindre l'équipe TITANS ?<span class="req">*</span></label>
-        <textarea id="motiv1" name="motiv1" placeholder="Expliquez votre motivation en quelques lignes..." required></textarea>
-        <div class="char-count" id="cc_motiv1">0 / 50 caractères minimum</div>
-        <div class="error-msg" id="err_motiv1">Merci de développer votre réponse (50 caractères minimum).</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="motiv2">Selon vous, qu'est-ce qui ferait qu'un gérant de maquis ou de bar accepterait d'utiliser une nouvelle application ?<span class="req">*</span></label>
-        <textarea id="motiv2" name="motiv2" placeholder="Réfléchissez à ce qui pourrait convaincre un gérant de maquis..." required></textarea>
-        <div class="char-count" id="cc_motiv2">0 / 50 caractères minimum</div>
-        <div class="error-msg" id="err_motiv2">Merci de développer votre réponse (50 caractères minimum).</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="motiv3">Comment vous y prendriez-vous pour convaincre quelqu'un qui dit "je n'ai pas besoin de ça" ?<span class="req">*</span></label>
-        <textarea id="motiv3" name="motiv3" placeholder="Décrivez votre approche concrètement..." required></textarea>
-        <div class="char-count" id="cc_motiv3">0 / 50 caractères minimum</div>
-        <div class="error-msg" id="err_motiv3">Merci de développer votre réponse (50 caractères minimum).</div>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(6)">← Retour</button>
-        <button type="button" class="btn btn-next" onclick="nextSection(6)">Continuer →</button>
-      </div>
-    </div>
-
-    <!-- SECTION 7 — DISPONIBILITÉ -->
-    <div class="section" id="s7">
-      <div class="section-header">
-        <div class="section-badge">Étape 7</div>
-        <div class="section-title">Disponibilité & conditions</div>
-        <div class="section-desc">Les missions se déroulent principalement les week-ends à Abidjan.</div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Êtes-vous étudiant(e) en ce moment ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="etudiant" id="et1" value="Oui" required><label class="option-label" for="et1"><span class="option-dot"></span>Oui</label></div>
-          <div class="option-item"><input type="radio" name="etudiant" id="et2" value="Non"><label class="option-label" for="et2"><span class="option-dot"></span>Non</label></div>
-        </div>
-        <div class="error-msg" id="err_etudiant">Veuillez répondre à cette question.</div>
-        <div class="conditional" id="cond_etudiant">
-          <div style="margin-top:14px">
-            <label class="field-label">Avez-vous des examens ou contraintes académiques dans les 30 prochains jours ?</label>
-            <div class="options-grid">
-              <div class="option-item"><input type="radio" name="examens" id="ex1" value="Oui, j'ai des examens"><label class="option-label" for="ex1"><span class="option-dot"></span>Oui, j'ai des examens</label></div>
-              <div class="option-item"><input type="radio" name="examens" id="ex2" value="Non, je suis disponible"><label class="option-label" for="ex2"><span class="option-dot"></span>Non, je suis disponible</label></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">Vous êtes disponible les week-ends ?<span class="req">*</span></label>
-        <div class="options-grid">
-          <div class="option-item"><input type="radio" name="weekend" id="w1" value="Oui, les deux jours" required><label class="option-label" for="w1"><span class="option-dot"></span>Oui, les deux jours</label></div>
-          <div class="option-item"><input type="radio" name="weekend" id="w2" value="Samedi seulement"><label class="option-label" for="w2"><span class="option-dot"></span>Samedi seulement</label></div>
-          <div class="option-item"><input type="radio" name="weekend" id="w3" value="Dimanche seulement"><label class="option-label" for="w3"><span class="option-dot"></span>Dimanche seulement</label></div>
-          <div class="option-item"><input type="radio" name="weekend" id="w4" value="Non disponible le week-end"><label class="option-label" for="w4"><span class="option-dot"></span>Non disponible le week-end</label></div>
-        </div>
-        <div class="error-msg" id="err_weekend">Veuillez répondre à cette question.</div>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(7)">← Retour</button>
-        <button type="button" class="btn btn-next" onclick="nextSection(7)">Continuer →</button>
-      </div>
-    </div>
-
-    <!-- SECTION 8 — RÉCAPITULATIF & SOUMISSION -->
-    <div class="section" id="s8">
-      <div class="section-header">
-        <div class="section-badge">Étape 8</div>
-        <div class="section-title">Confirmation</div>
-        <div class="section-desc">Vérifiez vos informations avant de soumettre votre candidature.</div>
-      </div>
-
-      <div id="recap" style="background:var(--white);border:1px solid var(--gray-200);border-radius:10px;padding:20px;margin-bottom:24px;font-size:14px;line-height:1.8;color:var(--navy-dark);"></div>
-
-      <div class="field-group">
-        <div class="option-item">
-          <input type="checkbox" id="confirm" name="confirm" required>
-          <label class="option-label" for="confirm"><span class="check-dot"></span>Je certifie que les informations fournies sont exactes et complètes.</label>
-        </div>
-        <div class="error-msg" id="err_confirm">Vous devez cocher cette case pour soumettre.</div>
-      </div>
-
-      <div class="btn-row">
-        <button type="button" class="btn btn-back" onclick="prevSection(8)">← Retour</button>
-        <button type="button" class="btn btn-submit" id="submitBtn" onclick="submitForm()">Soumettre ma candidature ✓</button>
-      </div>
-
-      <div class="error-screen" id="submitError">
-        Une erreur est survenue lors de l'envoi. Vérifiez votre connexion et réessayez. Si le problème persiste, contactez-nous directement sur WhatsApp.
-      </div>
-    </div>
-
-  </form>
-
-  <!-- SUCCESS -->
-  <div class="success-screen" id="successScreen">
-    <div class="success-icon">✓</div>
-    <h2>Candidature reçue !</h2>
-    <p>Merci pour votre intérêt. Si votre profil correspond à nos critères, vous serez contacté(e) sur votre numéro WhatsApp <strong>dans les 48 heures</strong>. Bonne chance !</p>
+    <button class="btn btn-primary" id="btn-start" disabled onclick="startTest()">Commencer le test</button>
   </div>
+
+  <!-- ÉCRAN 2 — QUESTIONS -->
+  <div class="card hidden" id="screen-question">
+    <span class="section-tag" id="q-section-tag"></span>
+    <p class="q-text" id="q-text"></p>
+    <div class="choice-grid" id="q-choices"></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" id="btn-prev" onclick="prevQuestion()">←</button>
+      <button class="btn btn-primary" id="btn-next" disabled onclick="nextQuestion()">Suivant</button>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 3 — RÉSULTAT (vue candidat) -->
+  <div class="card hidden" id="screen-resultat">
+    <div class="verdict-banner" id="verdict-banner">
+      <div class="verdict-title" id="verdict-title"></div>
+      <div class="verdict-sub" id="verdict-sub"></div>
+    </div>
+  </div>
+
+  <div class="footer-note">Titans © 2026 — Outil interne RH, confidentiel</div>
 
 </div>
 
 <script>
-  // ─── CONFIGURATION ─────────────────────────────────────────────
-  // REMPLACEZ cette URL par celle de votre Google Apps Script déployé
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3qxJCo7i8Y_I39VdvIu_qXJ0TuSWLuW634fr9pwR_W333xObXyHiEuTHfNwCFtAGB6Q/exec';
-  // ───────────────────────────────────────────────────────────────
+// ---------- DATA ----------
+const section1 = {
+  name: "Raisonnement logique & numérique",
+  questions: [
+    {q:"Continue la suite : 2 — 4 — 6 — 8 — ?", choices:["10","9","12","14"], correct:0},
+    {q:"Un client prend 3 bières à 500 FCFA chacune. Il te donne 2000 FCFA. Combien tu lui rends ?", choices:["300","1500","500","1000"], correct:2},
+    {q:"Le matin, il y a 20 bouteilles en stock. Dans la journée, on en vend 7 et on en reçoit 5 de plus. Combien il en reste le soir ?", choices:["12","18","13","25"], correct:1},
+    {q:"Continue la suite : Lundi — Mercredi — Vendredi — ?", choices:["Samedi","Jeudi","Mardi","Dimanche"], correct:3},
+    {q:"La caisse a 10 000 FCFA le matin. Le gérant vend pour 25 000 FCFA et paie 8 000 FCFA de dépenses. Combien doit rester en caisse le soir ?", choices:["27 000","17 000","35 000","23 000"], correct:0}
+  ]
+};
 
-  const TOTAL_SECTIONS = 8;
-  let currentSection = 1;
+const section2 = {
+  name: "Rigueur & attention aux détails",
+  questions: [
+    {q:"Le rapport dit : « On a vendu 12 bières à 500 FCFA et 5 sodas à 300 FCFA. Total encaissé : 8 500 FCFA. » Qu'est-ce qui ne va pas ?", choices:["Le nombre de bières est faux","Le prix du soda est faux","Le total est faux, ça devrait être 7 500 FCFA","Rien ne cloche"], correct:2},
+    {q:"Rapport terrain : « Visite le 14 mai. Elle accepte l'installation. Signé : agent Koffi, le 15 avril. » Quelle incohérence vois-tu ?", choices:["Les deux dates ne correspondent pas","Le nom de la gérante","Le nom de l'agent","Rien d'anormal"], correct:0},
+    {q:"Tu comptes 3 casiers de 12 bouteilles pleins, plus 4 bouteilles à part. Le gérant te dit qu'il a 44 bouteilles. C'est correct ?", choices:["Oui","Non, il devrait y en avoir 36","Non, il devrait y en avoir 48","Non, il devrait y en avoir 40"], correct:3},
+    {q:"Sur le cahier de caisse, tu lis « 15 000 FCFA » en chiffres, mais juste en dessous quelqu'un a écrit « douze mille FCFA » en lettres. Que fais-tu ?", choices:["Tu prends le chiffre le plus gros","Tu signales l'incohérence avant de continuer","Tu corriges toi-même sans rien dire","Tu ignores, ce n'est pas grave"], correct:1},
+    {q:"Stock du matin : Soda 18. Stock du soir : Soda 18. On sait que 8 sodas ont été vendus dans la journée. Que remarques-tu ?", choices:["Tout est normal","Le stock de bière est faux","Le stock de soda devrait être à 10 — erreur ou perte non expliquée","Le stock d'eau est faux"], correct:2}
+  ]
+};
 
-  function updateProgress() {
-    const pct = (currentSection / TOTAL_SECTIONS) * 100;
-    document.getElementById('progressBar').style.width = pct + '%';
-    document.getElementById('progressLabel').textContent = `Étape ${currentSection} / ${TOTAL_SECTIONS}`;
-  }
+const section3 = {
+  name: "Jugement situationnel",
+  questions: [
+    {q:"Tu fais des courses pour quelqu'un. Tu n'as trouvé que 6 articles sur les 10 demandés. On te demande comment ça s'est passé. Tu dis :", choices:["Que t'as tout trouvé","Exactement ce que t'as trouvé, les 6 articles","Que t'as eu un souci de transport, pour éviter d'en parler","Que t'as pas eu le temps de chercher"], correct:1},
+    {q:"Tu proposes ton aide à quelqu'un dans la rue. La personne refuse fermement et te demande de la laisser. Tu :", choices:["Insistes plusieurs fois","Te fâches, elle a été impolie","La suis un peu en répétant ta proposition","Pars poliment et continues ton chemin"], correct:3},
+    {q:"Tu empruntes un objet à quelqu'un et il tombe en panne pendant que tu l'utilises, sans que ce soit clairement ta faute. Tu :", choices:["Préviens la personne tout de suite, expliques ce qui s'est passé","Le rends sans rien dire, en espérant que ça passe","Le caches en attendant que quelqu'un le découvre","Dis que c'était déjà cassé avant"], correct:0},
+    {q:"Un ami te propose de partager un avantage obtenu en mentant à quelqu'un d'autre, sans que personne ne le sache. Tu :", choices:["Acceptes, personne ne le saura","Demandes combien il propose de partager","Refuses et continues normalement","Acceptes mais juste cette fois"], correct:2},
+    {q:"Un proche te fait remarquer une erreur dans une tâche que tu avais faite pour lui. Tu :", choices:["Te justifies, \"c'est pas grave\"","Écoutes, reconnais l'erreur si elle est réelle, et corriges","Ignores la remarque","Te fâches, \"j'ai fait de mon mieux\""], correct:1}
+  ]
+};
 
-  function showSection(n) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById('s' + n).classList.add('active');
-    currentSection = n;
-    updateProgress();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+const section4_prospection = {
+  name: "Mise en situation — Prospection",
+  questions: [
+    {q:"On te demande d'aborder des inconnus dans la rue sans rendez-vous, sachant que certains vont dire non. Avant de commencer, tu penses plutôt :", choices:["Tu vas éviter les gens qui ont l'air fermés","Un refus ne te concerne pas personnellement, tu continues","Tu préfères qu'on t'accompagne, seul ça te met mal à l'aise","Tu vas éviter d'aborder trop de monde"], correct:1},
+    {q:"Tu veux parler à quelqu'un d'important, mais tu arrives au mauvais moment — la personne est débordée. Tu :", choices:["Proposes de revenir plus tard et reviens effectivement","Insistes, ça ne prendra pas longtemps","Pars et n'y reviens plus","Attends sur place qu'elle se libère"], correct:0},
+    {q:"Quelqu'un te dit « oui oui, intéressant, on verra ça un jour » sans date ni vraie question. Tu :", choices:["Notes que c'est réglé","Insistes immédiatement pour un rendez-vous précis tout de suite","Pars en pensant que c'est gagné","Comprends que c'est une réponse polie pour ne pas dire non, et cherches un engagement plus clair"], correct:3},
+    {q:"Un voisin te demande un service que tu n'es pas censé faire toi-même, mais quelqu'un d'autre dans ton entourage s'en charge habituellement. Tu :", choices:["Le rends service toi-même","Lui dis de se débrouiller seul","Notes sa demande et la transmets à la bonne personne","Refuses complètement de l'aider"], correct:2},
+    {q:"Tu dois gérer ton emploi du temps sur plusieurs jours, sans que personne ne vérifie en cours de route. Tu :", choices:["T'organises et suis ton planning toi-même, chaque jour, sans qu'on te le demande","Attends qu'on t'appelle pour savoir quoi faire","Fais les choses seulement quand t'en as envie","Regroupes tout à la fin"], correct:0}
+  ]
+};
 
-  function prevSection(from) { showSection(from - 1); }
+const section4_integration = {
+  name: "Mise en situation — Intégration",
+  questions: [
+    {q:"Tu montres à quelqu'un comment faire une tâche nouvelle pour lui. Il se trompe plusieurs fois et met du temps à comprendre. Tu :", choices:["Le laisses se débrouiller seul, ça ira plus vite","Montres ton agacement pour qu'il fasse plus attention","Reprends calmement, en expliquant différemment si besoin","Le fais à sa place pour gagner du temps"], correct:2},
+    {q:"Un emploi propose des horaires qui changent souvent et qui peuvent aller jusque tard en soirée, selon l'activité du jour. Avant d'accepter, tu penses plutôt :", choices:["Je préfère refuser, je veux un horaire fixe et prévisible","Ça me va, je m'adapte au rythme du travail tant que c'est clair","J'accepte mais je compte partir à l'heure prévue, peu importe la situation","Je verrai au jour le jour selon mon humeur"], correct:1},
+    {q:"Tu dois bientôt repartir et une seule personne sait faire la tâche que tu as enseignée. Tu :", choices:["Tu pars, ce n'est pas ton problème si elle est absente un jour","Tu laisses un mot écrit et tu pars","Tu reportes ton départ indéfiniment","Tu t'assures qu'au moins une deuxième personne sache faire la tâche avant de partir"], correct:3},
+    {q:"Quelqu'un te dit : « l'ancienne méthode marchait bien, je ne vois pas pourquoi changer. » Tu :", choices:["Tu insistes en disant qu'il a tort","Tu écoutes son point de vue puis montres concrètement ce que la nouvelle méthode apporte de plus","Tu abandonnes et tu fais comme avant","Tu le forces sans explication"], correct:1},
+    {q:"Tu travailles dans un lieu où les clients arrivent surtout en fin de journée et où l'heure de fermeture dépend du dernier client. Comment tu vis cette réalité ?", choices:["Ça m'épuise vite, je préfère un travail où je sais exactement quand je rentre","C'est normal dans ce genre d'activité, je reste tant qu'il y a du monde","Je pars dès que possible même si des clients sont encore là","Je demande à être payé en plus pour chaque minute supplémentaire"], correct:1}
+  ]
+};
 
-  function nextSection(from) {
-    if (validateSection(from)) {
-      if (from === 7) buildRecap();
-      showSection(from + 1);
-    }
-  }
+const section4_both = {
+  name: "Mise en situation — Synthèse (Prospection + Intégration)",
+  questions: [
+    {q:"On te demande de proposer quelque chose à des inconnus, dans la rue, sans rendez-vous, sachant que plusieurs vont refuser. Avant de commencer, tu penses plutôt :", choices:["Tu vas éviter les gens qui ont l'air fermés","Un refus ne te concerne pas personnellement, tu continues","Tu préfères qu'on t'accompagne, seul ça te met mal à l'aise","Tu vas éviter d'aborder trop de monde"], correct:1},
+    {q:"Tu montres à quelqu'un comment faire une tâche nouvelle pour lui. Il se trompe plusieurs fois et met du temps à comprendre. Tu :", choices:["Le laisses se débrouiller seul, ça ira plus vite","Montres ton agacement pour qu'il fasse plus attention","Reprends calmement, en expliquant différemment si besoin","Le fais à sa place pour gagner du temps"], correct:2},
+    {q:"Tu dois gérer ton emploi du temps sur plusieurs jours, sans que personne ne vérifie en cours de route. Tu :", choices:["T'organises et suis ton planning toi-même, chaque jour, sans qu'on te le demande","Attends qu'on t'appelle pour savoir quoi faire","Fais les choses seulement quand t'en as envie","Regroupes tout à la fin"], correct:0},
+    {q:"Quelqu'un te dit : « ça marchait bien avant, je ne vois pas pourquoi changer. » Tu :", choices:["Tu insistes en disant qu'il a tort","Tu écoutes son point de vue puis montres concrètement ce qui change en mieux","Tu abandonnes et tu fais comme avant","Tu le forces sans explication"], correct:1},
+    {q:"Un emploi propose des horaires qui changent souvent et qui peuvent aller jusque tard en soirée, selon l'activité du jour. Avant d'accepter, tu penses plutôt :", choices:["Je préfère refuser, je veux un horaire fixe et prévisible","Ça me va, je m'adapte au rythme du travail tant que c'est clair","J'accepte mais je compte partir à l'heure prévue, peu importe la situation","Je verrai au jour le jour selon mon humeur"], correct:1}
+  ]
+};
 
-  // ─── VALIDATION ────────────────────────────────────────────────
-  function validateSection(n) {
-    let valid = true;
+// ---------- STATE ----------
+let state = {
+  nom: '', poste: '', date: '',
+  allQuestions: [],
+  currentQ: 0,
+  answers: []
+};
 
-    function radio(name, errId) {
-      const sel = document.querySelector(`input[name="${name}"]:checked`);
-      const err = document.getElementById(errId);
-      if (!sel) { err.classList.add('visible'); valid = false; }
-      else err.classList.remove('visible');
-    }
+// ---------- INTRO SCREEN ----------
+document.getElementById('cand-date').valueAsDate = new Date();
 
-    function text(id, errId, minLen = 1) {
-      const el = document.getElementById(id);
-      const err = document.getElementById(errId);
-      if (!el.value.trim() || el.value.trim().length < minLen) {
-        el.classList.add('invalid'); err.classList.add('visible'); valid = false;
-      } else { el.classList.remove('invalid'); err.classList.remove('visible'); }
-    }
+function checkIntroComplete() {
+  const ok = document.getElementById('cand-nom').value.trim().length > 0 && state.poste && document.getElementById('cand-date').value;
+  document.getElementById('btn-start').disabled = !ok;
+}
+document.getElementById('cand-nom').addEventListener('input', checkIntroComplete);
+document.getElementById('cand-date').addEventListener('input', checkIntroComplete);
 
-    if (n === 1) { radio('poste', 'err_poste'); }
-    if (n === 2) {
-      text('nom', 'err_nom');
-      text('whatsapp', 'err_whatsapp');
-      radio('commune', 'err_commune');
-      radio('dispo', 'err_dispo');
-    }
-    if (n === 3) {
-      radio('niveau', 'err_niveau');
-      text('diplome', 'err_diplome');
-      text('domaine', 'err_domaine');
-    }
-    if (n === 4) {
-      radio('exp', 'err_exp');
-      text('exp_vente', 'err_exp_vente');
-    }
-    if (n === 5) {
-      radio('smartphone', 'err_smartphone');
-      radio('os', 'err_os');
-      radio('internet', 'err_internet');
-      radio('deplacement', 'err_deplacement');
-    }
-    if (n === 6) {
-      text('motiv1', 'err_motiv1', 50);
-      text('motiv2', 'err_motiv2', 50);
-      text('motiv3', 'err_motiv3', 50);
-    }
-    if (n === 7) {
-      radio('etudiant', 'err_etudiant');
-      radio('weekend', 'err_weekend');
-    }
-    return valid;
-  }
+function selectPoste(el, val) {
+  document.querySelectorAll('[data-poste]').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  state.poste = val;
+  checkIntroComplete();
+}
 
-  // ─── CONDITIONNELS ─────────────────────────────────────────────
-  document.querySelectorAll('input[name="dispo"]').forEach(r => {
-    r.addEventListener('change', () => {
-      document.getElementById('cond_dispo').classList.toggle('visible', r.value === 'Non, date à préciser' && r.checked);
-    });
+function posteLabel(val) {
+  if (val === 'prospection') return 'Agent Prospection';
+  if (val === 'integration') return 'Agent Intégration';
+  return 'Agent Prospection + Agent Intégration';
+}
+
+// ---------- TEST ----------
+function startTest() {
+  state.nom = document.getElementById('cand-nom').value.trim();
+  state.date = document.getElementById('cand-date').value;
+
+  let section4 = section4_prospection;
+  if (state.poste === 'integration') section4 = section4_integration;
+  if (state.poste === 'both') section4 = section4_both;
+
+  state.allQuestions = [
+    ...section1.questions.map(q => ({...q, section: section1.name})),
+    ...section2.questions.map(q => ({...q, section: section2.name})),
+    ...section3.questions.map(q => ({...q, section: section3.name})),
+    ...section4.questions.map(q => ({...q, section: section4.name}))
+  ];
+  state.currentQ = 0;
+  state.answers = new Array(state.allQuestions.length).fill(null);
+
+  document.getElementById('header-title').textContent = 'Test psychotechnique';
+  document.getElementById('header-sub').textContent = state.nom + ' — ' + posteLabel(state.poste);
+  document.getElementById('screen-intro').classList.add('hidden');
+  document.getElementById('progress-wrap').classList.remove('hidden');
+  document.getElementById('screen-question').classList.remove('hidden');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const total = state.allQuestions.length;
+  const q = state.allQuestions[state.currentQ];
+  document.getElementById('q-section-tag').textContent = q.section;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('progress-label').textContent = `Question ${state.currentQ + 1}/${total}`;
+  document.getElementById('progress-fill').style.width = ((state.currentQ) / total * 100) + '%';
+
+  const lettres = ['a','b','c','d'];
+  const choicesDiv = document.getElementById('q-choices');
+  choicesDiv.innerHTML = '';
+  q.choices.forEach((c, i) => {
+    const div = document.createElement('div');
+    div.className = 'choice-item';
+    if (state.answers[state.currentQ] === i) div.classList.add('selected');
+    div.onclick = () => selectAnswer(i);
+    div.innerHTML = `<div class="choice-dot"></div><div class="choice-text"><span class="choice-letter">${lettres[i]})</span> ${c}</div>`;
+    choicesDiv.appendChild(div);
   });
-  document.querySelectorAll('input[name="exp"]').forEach(r => {
-    r.addEventListener('change', () => {
-      document.getElementById('cond_exp').classList.toggle('visible', r.value === 'Oui' && r.checked);
-    });
+
+  document.getElementById('btn-prev').style.visibility = state.currentQ === 0 ? 'hidden' : 'visible';
+  document.getElementById('btn-next').disabled = state.answers[state.currentQ] === null;
+  document.getElementById('btn-next').textContent = state.currentQ === total - 1 ? 'Voir le résultat' : 'Suivant';
+}
+
+function selectAnswer(i) {
+  state.answers[state.currentQ] = i;
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (state.currentQ < state.allQuestions.length - 1) {
+    state.currentQ++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function prevQuestion() {
+  if (state.currentQ > 0) {
+    state.currentQ--;
+    renderQuestion();
+  }
+}
+
+// ---------- RESULT ----------
+
+// URL du Web App Apps Script connecté au Google Sheet de suivi des candidats.
+// À remplacer une fois le script déployé (voir message de Claude pour le code à coller).
+const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbw3qxJCo7i8Y_I39VdvIu_qXJ0TuSWLuW634fr9pwR_W333xObXyHiEuTHfNwCFtAGB6Q/exec";
+
+function showResult() {
+  // Score per section name (each section = 5 questions = /25) — calculé pour le Sheet, pas affiché au candidat
+  const sectionScores = {};
+  state.allQuestions.forEach((q, i) => {
+    if (sectionScores[q.section] === undefined) sectionScores[q.section] = 0;
+    if (state.answers[i] === q.correct) sectionScores[q.section] += 5;
   });
-  document.querySelectorAll('input[name="etudiant"]').forEach(r => {
-    r.addEventListener('change', () => {
-      document.getElementById('cond_etudiant').classList.toggle('visible', r.value === 'Oui' && r.checked);
-    });
-  });
 
-  // ─── COMPTEURS DE CARACTÈRES ───────────────────────────────────
-  ['motiv1','motiv2','motiv3'].forEach(id => {
-    document.getElementById(id).addEventListener('input', function() {
-      const len = this.value.length;
-      const cc = document.getElementById('cc_' + id);
-      cc.textContent = `${len} / 50 caractères minimum`;
-      cc.style.color = len >= 50 ? 'var(--success)' : 'var(--gray-400)';
-    });
-  });
+  const s1 = sectionScores[section1.name] || 0;
+  const s2 = sectionScores[section2.name] || 0;
+  const s3 = sectionScores[section3.name] || 0;
 
-  // ─── RÉCAPITULATIF ─────────────────────────────────────────────
-  function getVal(name, isText) {
-    if (isText) {
-      const el = document.getElementById(name);
-      return el ? el.value.trim() : '—';
-    }
-    const sel = document.querySelector(`input[name="${name}"]:checked`);
-    return sel ? sel.value : '—';
+  let section4 = section4_prospection;
+  if (state.poste === 'integration') section4 = section4_integration;
+  if (state.poste === 'both') section4 = section4_both;
+  const s4 = sectionScores[section4.name] || 0;
+
+  const total = s1 + s2 + s3 + s4;
+  let verdict = 'Non retenu';
+  if (total >= 70) verdict = 'Admis';
+  else if (total >= 45) verdict = 'Zone grise';
+
+  document.getElementById('progress-wrap').classList.add('hidden');
+  document.getElementById('screen-question').classList.add('hidden');
+  document.getElementById('screen-resultat').classList.remove('hidden');
+
+  // Écran candidat : uniquement un message, jamais le détail du score
+  const banner = document.getElementById('verdict-banner');
+  if (total >= 45) {
+    banner.className = 'verdict-banner admis';
+    document.getElementById('verdict-title').textContent = 'Félicitations !';
+    document.getElementById('verdict-sub').textContent = "Score suffisant. Vous serez contacté(e) sous 48h par la Direction des Ressources Humaines pour la suite du processus.";
+  } else {
+    banner.className = 'verdict-banner recale';
+    document.getElementById('verdict-title').textContent = 'Test terminé';
+    document.getElementById('verdict-sub').textContent = "Merci pour votre participation. Nous ne donnerons pas suite à votre candidature pour ce poste.";
   }
 
-  function buildRecap() {
-    const rows = [
-      ['Poste visé', getVal('poste')],
-      ['Nom & prénom', getVal('nom', true)],
-      ['WhatsApp', getVal('whatsapp', true)],
-      ['Commune', getVal('commune')],
-      ['Disponibilité', getVal('dispo')],
-      ['Niveau d\'études', getVal('niveau')],
-      ['Diplôme', getVal('diplome', true)],
-      ['Domaine', getVal('domaine', true)],
-      ['Expérience', getVal('exp')],
-      ['Smartphone', getVal('smartphone')],
-      ['Téléphone OS', getVal('os')],
-      ['Internet', getVal('internet')],
-      ['Déplacements', getVal('deplacement')],
-      ['Étudiant(e)', getVal('etudiant')],
-      ['Disponible week-end', getVal('weekend')],
-    ];
-    document.getElementById('recap').innerHTML = rows.map(([k,v]) =>
-      `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--gray-200)">
-        <span style="color:var(--gray-400);min-width:160px;font-size:13px">${k}</span>
-        <span style="font-weight:500">${v}</span>
-      </div>`
-    ).join('');
+  // Envoi silencieux de toutes les données (candidat + détail des scores) vers le Google Sheet, pour César
+  const payload = {
+    type_rapport: 'test_recrutement',
+    nom: state.nom,
+    poste: posteLabel(state.poste),
+    date: state.date,
+    section1: s1, section2: s2, section3: s3,
+    section4_nom: section4.name, section4_score: s4,
+    total: total,
+    verdict: verdict
+  };
+  if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL.indexOf('COLLER_ICI') === -1) {
+    fetch(SHEET_WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
   }
+}
 
-  // ─── SOUMISSION ────────────────────────────────────────────────
-  function getFormData() {
-    const fields = ['poste','commune','dispo','niveau','exp','smartphone','os','internet','deplacement','etudiant','examens','weekend'];
-    const textFields = ['nom','whatsapp','diplome','domaine','dispo_date','exp_detail','exp_vente','motiv1','motiv2','motiv3'];
-    const data = { timestamp: new Date().toISOString() };
-    fields.forEach(f => { data[f] = getVal(f); });
-    textFields.forEach(f => {
-      const el = document.getElementById(f) || document.querySelector(`[name="${f}"]`);
-      data[f] = el ? el.value.trim() : '';
-    });
-    return data;
-  }
-
-  async function submitForm() {
-    const confirmBox = document.getElementById('confirm');
-    const errConfirm = document.getElementById('err_confirm');
-    if (!confirmBox.checked) {
-      errConfirm.classList.add('visible');
-      return;
-    }
-    errConfirm.classList.remove('visible');
-
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.textContent = 'Envoi en cours...';
-
-    const data = getFormData();
-
-    try {
-      await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      document.getElementById('recruitForm').style.display = 'none';
-      document.getElementById('successScreen').classList.add('active');
-    } catch (err) {
-      btn.disabled = false;
-      btn.textContent = 'Soumettre ma candidature ✓';
-      document.getElementById('submitError').classList.add('active');
-    }
-  }
-
-  updateProgress();
+function resetAll() {
+  state = { nom: '', poste: '', date: '', allQuestions: [], currentQ: 0, answers: [] };
+  document.getElementById('cand-nom').value = '';
+  document.querySelectorAll('[data-poste]').forEach(e => e.classList.remove('selected'));
+  document.getElementById('cand-date').valueAsDate = new Date();
+  document.getElementById('btn-start').disabled = true;
+  document.getElementById('header-title').textContent = 'Test psychotechnique';
+  document.getElementById('header-sub').textContent = 'Test de recrutement Titans';
+  document.getElementById('progress-wrap').classList.add('hidden');
+  document.getElementById('screen-resultat').classList.add('hidden');
+  document.getElementById('screen-question').classList.add('hidden');
+  document.getElementById('screen-intro').classList.remove('hidden');
+}
 </script>
+
 </body>
 </html>
